@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/user',[UserController::class,'users']);
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/item', function () {
-    return view('item');
-})->name('item');
+Route::middleware(['auth:sanctum', 'verified'])->get('/products/index', function () {
+    return view('index');
+})->name('index');
+
+Route::get('/product',[SearchController::class,'search'])->name('web.search');

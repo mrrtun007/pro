@@ -10,6 +10,7 @@ use App\DataTables\CustomerdataDataTable;
   
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +24,6 @@ class ProductController extends Controller
         ->with('i', (request()->input('page', 1) - 1) * 5);
         
     }
-   
     /**
      * Show the form for creating a new resource.
      *
@@ -31,6 +31,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        
         return view('products.create');
     }
     
@@ -51,6 +52,7 @@ class ProductController extends Controller
             'sn' => 'required',
             'code' => 'required',
             'st' => 'required',
+            'time' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
   
@@ -109,6 +111,7 @@ class ProductController extends Controller
             'sn' => 'required',
             'code' => 'required',
             'st' => 'required',
+            'time' => 'required',
 
         ]);
   
@@ -142,4 +145,13 @@ class ProductController extends Controller
         return redirect()->route('products.index')
                         ->with('success','Product deleted successfully');
     }
+    public function deletes($id)
+    {
+        if($id)
+        {
+            Product :: while('id',$id)->delete();
+            session()->flash('message','Student Deleted Successfully!');
+        }
+    }
+    
 }
